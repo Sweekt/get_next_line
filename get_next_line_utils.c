@@ -5,73 +5,105 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: beroy <beroy@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 14:49:00 by beroy             #+#    #+#             */
-/*   Updated: 2023/11/16 14:11:46 by beroy            ###   ########.fr       */
+/*   Created: 2023/11/20 12:01:53 by beroy             #+#    #+#             */
+/*   Updated: 2023/11/20 16:49:30 by beroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlennl(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str && str[i] && str[i] != '\n')
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*dup;
-	size_t	i;
-
-	i = 0;
-	dup = malloc(sizeof(char) * (ft_strlennl(src) + 1));
-	if (dup == NULL)
-		return (dup);
-	while (src[i] && src[i] != '\n')
-	{
-		dup[i] = src[i];
-		i++;
-	}
-	dup[i] = 0;
-	return (dup);
-}
 
 size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
 	i = 0;
-	while (str && str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
 
+char	*ft_strdup(char *str)
+{
+	size_t	i;
+	size_t	len;
+	char	*dup;
+
+	len = 0;
+	while (str[len] != '\n' && str[len] != 0)
+		len++;
+	if (str[len] == '\n')
+		len++;
+	dup = malloc(sizeof(char) * (len + 1));
+	i = 0;
+	while (i < len)
+	{
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = 0;
+	return (dup);
+}
+
+int	ft_linecheck(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (ft_strlen(str) == 0)
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*str;
 	size_t	i;
 	size_t	j;
+	size_t	len;
+	char	*join;
 
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (str == NULL)
-		return (str);
+	len = 0;
+	while (s2[len] != '\n' && s2[len] != 0)
+		len++;
+	if (s2[len] == '\n')
+		len++;
+	join = malloc(sizeof(char) * (ft_strlen(s1) + len + 1));
+	if (join == NULL)
+		return (join);
 	i = 0;
 	j = 0;
 	while (s1 && s1[i])
 	{
-		str[i] = s1[i];
+		join[i] = s1[i];
 		i++;
 	}
-	while (s2[j])
+	while (s2 && j++ < len)
+		join[i + j - 1] = s2[j - 1];
+	join[i + j - 1] = 0;
+	free (s1);
+	return (join);
+}
+
+void	ft_buffclean(char *str)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (str[i] != '\n' && str[i] != 0)
+		i++;
+	if (str[i] == '\n')
+		i++;
+	j = 0;
+	while (str[i + j])
 	{
-		str[i + j] = s2[j];
+		str[j] = str[i + j];
 		j++;
 	}
-	str[i + j] = 0;
-	free (s1);
-	return (str);
+	str[j] = 0;
 }

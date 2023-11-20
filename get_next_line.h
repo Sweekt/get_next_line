@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: beroy <beroy@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 14:44:47 by beroy             #+#    #+#             */
-/*   Updated: 2023/11/16 16:14:16 by beroy            ###   ########.fr       */
+/*   Created: 2023/11/20 13:17:43 by beroy             #+#    #+#             */
+/*   Updated: 2023/11/20 15:50:06 by beroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4000
+#  define BUFFER_SIZE 1
 # endif
 
-# include <stdlib.h>
 # include <unistd.h>
+# include <stdlib.h>
 # include <stdio.h>
 
 char	*get_next_line(int fd);
-char	*ft_strdup(char *src);
+char	*ft_strdup(char *str);
+int		ft_linecheck(char *str);
 char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(char *str);
+void	ft_buffclean(char *str);
 
 #endif
