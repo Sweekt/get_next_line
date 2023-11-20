@@ -6,7 +6,7 @@
 /*   By: beroy <beroy@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:01:53 by beroy             #+#    #+#             */
-/*   Updated: 2023/11/20 16:49:30 by beroy            ###   ########.fr       */
+/*   Updated: 2023/11/20 18:16:23 by beroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_strdup(char *str)
 	if (str[len] == '\n')
 		len++;
 	dup = malloc(sizeof(char) * (len + 1));
+	if (dup == NULL)
+		return (dup);
 	i = 0;
 	while (i < len)
 	{
@@ -74,7 +76,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		len++;
 	join = malloc(sizeof(char) * (ft_strlen(s1) + len + 1));
 	if (join == NULL)
-		return (join);
+		return (free(s1), NULL);
 	i = 0;
 	j = 0;
 	while (s1 && s1[i])
