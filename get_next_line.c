@@ -6,7 +6,7 @@
 /*   By: beroy <beroy@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:34:48 by beroy             #+#    #+#             */
-/*   Updated: 2023/11/20 17:24:24 by beroy            ###   ########.fr       */
+/*   Updated: 2023/11/20 18:02:53 by beroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ char	*get_next_line(int fd)
 {
 	static char	buff[BUFFER_SIZE + 1] = "\0";
 	char		*line;
-	static int	readed = 1;
+	int			readed;
 
+	readed = 1;
 	if (read(fd, NULL, 0) < 0)
 		return (NULL);
 	line = ft_strdup(buff);
@@ -27,7 +28,7 @@ char	*get_next_line(int fd)
 	{
 		readed = read(fd, buff, BUFFER_SIZE);
 		if (readed < 0)
-			return (NULL);
+			return (free(line), NULL);
 		buff[readed] = 0;
 		line = ft_strjoin(line, buff);
 		if (line == NULL)
