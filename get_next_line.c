@@ -6,11 +6,23 @@
 /*   By: beroy <beroy@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:34:48 by beroy             #+#    #+#             */
-/*   Updated: 2023/11/20 18:27:41 by beroy            ###   ########.fr       */
+/*   Updated: 2023/11/21 09:45:53 by beroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	ft_bzero(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != 0)
+	{
+		str[i] = 0;
+		i++;
+	}
+}
 
 char	*get_next_line(int fd)
 {
@@ -20,7 +32,7 @@ char	*get_next_line(int fd)
 
 	readed = 1;
 	if (read(fd, NULL, 0) < 0)
-		return (NULL);
+		return (ft_bzero(buff), NULL);
 	line = ft_strdup(buff);
 	if (line == NULL)
 		return (NULL);
@@ -28,7 +40,7 @@ char	*get_next_line(int fd)
 	{
 		readed = read(fd, buff, BUFFER_SIZE);
 		if (readed < 0)
-			return (free(line), NULL);
+			return (ft_bzero(buff), free(line), NULL);
 		buff[readed] = 0;
 		line = ft_strjoin(line, buff);
 		if (line == NULL)
