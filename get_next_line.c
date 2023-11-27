@@ -51,28 +51,3 @@ char	*get_next_line(int fd)
 		return (free(line), NULL);
 	return (line);
 }
-
-/*#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
-int main()
-{
-	int fd;
-	char *str;
-	size_t	i;
-
-	fd = open("test", O_RDONLY);
-	i = 1;
-	while (i != 0)
-	{
-		str = get_next_line(fd);
-		printf("%lu: %s", i, str);
-		i++;
-		if (str == NULL)
-			i = 0;
-		free(str);
-
-	}
-	return (0);
-}*/
