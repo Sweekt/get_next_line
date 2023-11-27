@@ -6,7 +6,7 @@
 /*   By: beroy <beroy@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:01:53 by beroy             #+#    #+#             */
-/*   Updated: 2023/11/20 18:16:23 by beroy            ###   ########.fr       */
+/*   Updated: 2023/11/25 14:50:11 by beroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_linecheck(char *str)
 	size_t	i;
 
 	i = 0;
-	if (ft_strlen(str) == 0)
+	if (ft_strlen(str + i) == 0)
 		return (0);
 	while (str[i])
 	{
