@@ -124,7 +124,7 @@ get_next_line/
 
 Projet réalisé par :
 
-- **Votre Nom** ([votre-login@42.fr](mailto\:votre-login@42.fr))
+- **Benjamin "Sweekt" Roy** ([beroy@student.42lyon.fr](mailto:beroy@student.42lyon.fr))
 
 ---
 
